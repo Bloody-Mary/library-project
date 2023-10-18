@@ -1,4 +1,11 @@
 package ru.babushkina.libraryproject.service;
 
-public class GenreServiceImpl {
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.babushkina.libraryproject.repository.GenreRepository;
+
+@Service
+@RequiredArgsConstructor
+public class GenreServiceImpl implements GenreService {
+    private final GenreRepository genreRepository;
 }
