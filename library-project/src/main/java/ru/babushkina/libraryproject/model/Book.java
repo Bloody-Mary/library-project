@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -22,4 +24,12 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
     private Genre genre;
+
+    @ManyToMany
+    @JoinTable(
+            name = "author_book",
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
+    private Set<Author> authors;
+
 }
