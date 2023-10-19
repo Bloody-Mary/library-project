@@ -37,4 +37,17 @@ public class GenreServiceImpl implements GenreService {
                 .genreBooks(bookDtoList)
                 .build();
     }
+
+    private BookDto convertToBookDto(Book book) {
+        List<AuthorDto> authorDtoList = book.getAuthors()
+                .stream()
+                .map(author -> convertToAuthorDto(author))
+                .collect(Collectors.toList());
+        return BookDto.builder()
+                .id(book.getId())
+                .name(book.getName())
+                .genre(book.getGenre().getName())
+                .authors(authorDtoList)
+                .build();
+    }
 }
