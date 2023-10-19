@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -12,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class GenreDto {
     private Long id;
     private String name;
+    private List<BookDto> genreBooks;
 }

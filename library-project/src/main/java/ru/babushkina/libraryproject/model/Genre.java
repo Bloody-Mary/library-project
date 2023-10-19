@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,4 +20,7 @@ public class Genre {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
+    private List<Book> books;
 }

@@ -2,11 +2,16 @@ package ru.babushkina.libraryproject.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.babushkina.libraryproject.dto.AuthorDto;
+import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.dto.GenreDto;
+import ru.babushkina.libraryproject.model.Author;
+import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.model.Genre;
 import ru.babushkina.libraryproject.repository.AuthorRepository;
 import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.repository.GenreRepository;
+import java.util.stream.Collectors;
 
 import java.util.List;
 
@@ -14,12 +19,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
-    private final BookRepository bookRepository;
-    private final AuthorRepository authorRepository;
 
     @Override
     public GenreDto getGenreById(Long id) {
         Genre genre = genreRepository.findById(id).orElseThrow();
         return convertToDto(genre);
+    }
+
+    private GenreDto convertToDto(Genre genre) {
+        List<BookDto> bookDtoList = genre.getBooks()
+                .stream()
+                .map(book -> convertToBookDto(book))
+                .collect(Collectors.toList());
+        return GenreDto.builder()
+                .id(genre.getId())
+                .name(genre.getName())
+                .genreBooks(bookDtoList)
+                .build();
     }
 }
