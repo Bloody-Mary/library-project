@@ -50,4 +50,12 @@ public class GenreServiceImpl implements GenreService {
                 .authors(authorDtoList)
                 .build();
     }
+
+    private AuthorDto convertToAuthorDto(Author author) {
+        return AuthorDto.builder()
+                .id(author.getId())
+                .name(author.getName())
+                .surname(author.getSurname())
+                .build();
+    }
 }
