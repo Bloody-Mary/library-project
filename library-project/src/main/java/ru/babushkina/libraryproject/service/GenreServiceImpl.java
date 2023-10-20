@@ -5,13 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.dto.GenreDto;
-import ru.babushkina.libraryproject.model.Author;
-import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.model.Genre;
-import ru.babushkina.libraryproject.repository.AuthorRepository;
-import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.repository.GenreRepository;
-import java.util.stream.Collectors;
+
 
 import java.util.List;
 
@@ -29,33 +25,25 @@ public class GenreServiceImpl implements GenreService {
     private GenreDto convertToDto(Genre genre) {
         List<BookDto> bookDtoList = genre.getBooks()
                 .stream()
-                .map(book -> convertToBookDto(book))
-                .collect(Collectors.toList());
-        return GenreDto.builder()
+                .map(book -> BookDto.builder()
+                        .id(book.getId())
+                        .name(book.getName())
+                        .authors(book.getAuthors()
+                                .stream()
+                                .map(author -> AuthorDto.builder()
+                                        .id(author.getId())
+                                        .name(author.getName())
+                                        .surname(author.getSurname())
+                                        .build())
+                                .toList())
+                        .build())
+                .toList();
+        GenreDto.GenreDtoBuilder builder = GenreDto.builder()
                 .id(genre.getId())
-                .name(genre.getName())
-                .genreBooks(bookDtoList)
-                .build();
-    }
-
-    private BookDto convertToBookDto(Book book) {
-        List<AuthorDto> authorDtoList = book.getAuthors()
-                .stream()
-                .map(author -> convertToAuthorDto(author))
-                .collect(Collectors.toList());
-        return BookDto.builder()
-                .id(book.getId())
-                .name(book.getName())
-                .genre(book.getGenre().getName())
-                .authors(authorDtoList)
-                .build();
-    }
-
-    private AuthorDto convertToAuthorDto(Author author) {
-        return AuthorDto.builder()
-                .id(author.getId())
-                .name(author.getName())
-                .surname(author.getSurname())
-                .build();
+                .books(bookDtoList);
+        if (genre.getName() != null) {
+            builder.name(genre.getName());
+        }
+        return builder.build();
     }
 }
