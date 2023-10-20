@@ -1,2 +1,1 @@
-# jdbc-spring-example
-First jdbc and spring boot mini app
+Simple web-application for library
