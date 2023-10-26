@@ -1,6 +1,7 @@
 Simple web-application for library
 
 Запросы на получение названия жанра и списка всех книг со всеми авторами у этого жанра.
+
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/84e4ac27-1ec1-42d2-aeeb-55ab6bc63765)
 
 
