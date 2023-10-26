@@ -24,7 +24,7 @@ public class AuthorController {
     }
 
     @GetMapping("author/v2")
-    AuthorDto getAuthorByNameV2(@RequestParam("name"), String name) {
+    AuthorDto getAuthorByNameV2(@RequestParam("name") String name) {
         return authorService.getByNameV2(name);
     }
 }
