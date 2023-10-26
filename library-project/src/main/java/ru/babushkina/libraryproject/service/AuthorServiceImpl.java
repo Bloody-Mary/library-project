@@ -44,10 +44,19 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     private AuthorDto convertEntityToDto(Author author) {
+        List<BookDto> bookDtoList = author.getBooks()
+                .stream()
+                .map(book -> BookDto.builder()
+                        .genre(book.getGenre().getName())
+                        .name(book.getName())
+                        .id(book.getId())
+                        .build()
+                ).toList();
         return AuthorDto.builder()
                 .id(author.getId())
                 .name(author.getName())
                 .surname(author.getSurname())
+                .books(bookDtoList)
                 .build();
     }
 }
