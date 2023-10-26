@@ -26,4 +26,7 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Genre> genre;
 }
