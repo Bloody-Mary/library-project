@@ -61,7 +61,7 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public AuthorDto getbyNameV2(String name) {
+    public AuthorDto getByNameV2(String name) {
         Author author = authorRepository.findAuthorByNameBySQL(name).orElseThrow();
         return convertEntityToDto(author);
     }
