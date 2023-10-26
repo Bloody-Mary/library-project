@@ -17,18 +17,19 @@ Simple web-application for library
 1. С помощью автогенерации запроса
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/99321c84-a52c-4a2e-845f-a4b70c72949c)
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/eeef2ff7-7983-4e82-a4d8-ebd2c4f68215)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/c7ce3c08-b0d5-493d-8ebd-3252fcd57fde)
 
 
 2. С помощью аннотации @Query
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/8ce90269-1578-4ead-a19a-554da8fec468)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/1bbf8ca2-cdb8-4eff-b5b7-3407fd2592c6)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/6a92b00e-7f72-407e-b001-63e689518ee7)
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/55f1c8f0-a4a4-4ae7-a2b0-ef558bc7cea9)
+
 
 3. С помощью JPA Criteria Queries
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/6372b37b-50bd-4e40-8381-0312e52f3291)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/3e790978-2250-4798-bb2b-0496b407ad2f)
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/d6410266-5a39-4c78-ac84-eeebb4fb69a6)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/146cabe2-86ee-4b3f-8eac-3231ff328dbd)
