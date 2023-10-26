@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.babushkina.libraryproject.model.Genre;
 
 import java.util.List;
 
@@ -19,5 +18,4 @@ public class AuthorDto {
     private String name;
     private String surname;
     private List<BookDto> books;
-    private List<Genre> genre;
 }
