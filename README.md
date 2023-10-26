@@ -23,6 +23,7 @@ Simple web-application for library
 
 
 2. С помощью аннотации @Query
+
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/8ce90269-1578-4ead-a19a-554da8fec468)
 
 
@@ -30,6 +31,7 @@ Simple web-application for library
 
 
 3. С помощью JPA Criteria Queries
+
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/6372b37b-50bd-4e40-8381-0312e52f3291)
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/d6410266-5a39-4c78-ac84-eeebb4fb69a6)
