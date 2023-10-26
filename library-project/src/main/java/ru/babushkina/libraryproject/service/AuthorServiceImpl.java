@@ -20,6 +20,12 @@ public class AuthorServiceImpl implements AuthorService{
         return convertToDto(author);
     }
 
+    @Override
+    public AuthorDto getByNameV1(String name) {
+        Author author = authorRepository.findAuthorByName(name).orElseThrow();
+        return convertEntityToDto(author);
+    }
+
     private AuthorDto convertToDto(Author author) {
         List<BookDto> bookDtoList = author.getBooks()
                 .stream()
