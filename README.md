@@ -12,7 +12,6 @@ Queries for a genre and a list of all books with all authors in that genre
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/c0e93578-1d12-4ad7-ae26-f222c090f0e1)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/affbb872-3167-44f2-9617-8ba62ffc99c0)
 
 Queries to find an author by his name with a list of his books
 
