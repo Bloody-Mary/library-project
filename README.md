@@ -17,6 +17,7 @@ Simple web-application for library
 1. С помощью автогенерации запроса
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/99321c84-a52c-4a2e-845f-a4b70c72949c)
+
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/eeef2ff7-7983-4e82-a4d8-ebd2c4f68215)
 
 
@@ -32,4 +33,3 @@ Simple web-application for library
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/6372b37b-50bd-4e40-8381-0312e52f3291)
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/d6410266-5a39-4c78-ac84-eeebb4fb69a6)
-
