@@ -5,4 +5,5 @@ import ru.babushkina.libraryproject.model.Author;
 
 public interface AuthorService {
     AuthorDto getAuthorById(Long id);
+    AuthorDto getByNameV1(String name);
 }
