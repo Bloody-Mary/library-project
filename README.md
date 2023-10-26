@@ -34,4 +34,5 @@ Simple web-application for library
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/6372b37b-50bd-4e40-8381-0312e52f3291)
 
-![image](https://github.com/Bloody-Mary/library-project/assets/37978402/d6410266-5a39-4c78-ac84-eeebb4fb69a6)
+![image](https://github.com/Bloody-Mary/library-project/assets/37978402/09796032-469a-4314-934c-3cdad015161d)
+
