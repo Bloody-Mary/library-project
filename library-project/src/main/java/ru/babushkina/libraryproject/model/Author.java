@@ -8,6 +8,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -26,7 +34,4 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
-
-    @ManyToMany(mappedBy = "authors")
-    private Set<Genre> genre;
 }
