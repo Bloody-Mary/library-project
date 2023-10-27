@@ -59,4 +59,13 @@ public class UsersModel {
     public int hashCode() {
         return Objects.hash(id, login, password, email);
     }
+
+    @Override
+    public String toString() {
+        return "UsersModel{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
