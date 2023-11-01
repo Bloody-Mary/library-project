@@ -111,5 +111,13 @@ public class AuthorServiceImpl implements AuthorService{
                             .build())
                     .toList();
         }
+
+        AuthorDto authorDto = AuthorDto.builder()
+                .id(author.getId())
+                .name(author.getName())
+                .surname(author.getSurname())
+                .books(bookDtoList)
+                .build();
+        return authorDto;
     }
 }
