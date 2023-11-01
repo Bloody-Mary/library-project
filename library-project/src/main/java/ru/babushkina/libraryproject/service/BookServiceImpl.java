@@ -7,10 +7,14 @@ import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.model.Book;
+import ru.babushkina.libraryproject.model.Genre;
 import ru.babushkina.libraryproject.repository.BookRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +65,27 @@ public class BookServiceImpl implements BookService{
                 .name(bookCreateDto.getName())
                 .genre(bookCreateDto.getGenre())
                 .build();
+    }
+
+    private BookDto convertSavedEntityToDto(Book book) {
+        List<AuthorDto> authorDtoList = null;
+        if (book.getAuthors() != null) {
+            authorDtoList = book.getAuthors()
+                    .stream()
+                    .map(author -> AuthorDto.builder()
+                            .name(author.getName())
+                            .surname(author.getSurname())
+                            .id(author.getId())
+                            .build())
+                    .toList();
+        }
+
+        BookDto bookDto = BookDto.builder()
+                .id(book.getId())
+                .name(book.getName())
+                .genre(book.getGenre().getName())
+                .authors(authorDtoList)
+                .build();
+        return bookDto;
     }
 }
