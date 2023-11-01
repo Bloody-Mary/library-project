@@ -91,4 +91,11 @@ public class AuthorServiceImpl implements AuthorService{
         AuthorDto authorDto = convertSavedEntityToDto(author);
         return authorDto;
     }
+
+    private Author convertDtoToEntity(AuthorCreateDto authorCreateDto) {
+        return Author.builder()
+                .name(authorCreateDto.getName())
+                .surname(authorCreateDto.getSurname())
+                .build();
+    }
 }
