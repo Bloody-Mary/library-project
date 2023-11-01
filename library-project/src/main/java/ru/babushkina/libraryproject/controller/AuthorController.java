@@ -32,7 +32,7 @@ public class AuthorController {
     }
 
     @PostMapping("/author/create")
-    AuthorDto createAuthor(@RequestParam AuthorCreateDto authorCreateDto) {
+    AuthorDto createAuthor(@RequestBody AuthorCreateDto authorCreateDto) {
         return authorService.createAuthor(authorCreateDto);
     }
 }
