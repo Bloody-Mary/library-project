@@ -7,6 +7,7 @@ import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.model.Author;
@@ -82,5 +83,12 @@ public class AuthorServiceImpl implements AuthorService{
         });
         Author author = authorRepository.findOne(specification).orElseThrow();
         return convertEntityToDto(author);
+    }
+
+    @Override
+    public AuthorDto createAuthor(AuthorCreateDto authorCreateDto) {
+        Author author = authorRepository.save(convertDtoToEntity(authorCreateDto));
+        AuthorDto authorDto = convertSavedEntityToDto(author);
+        return authorDto;
     }
 }
