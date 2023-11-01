@@ -52,7 +52,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookDto createBook(BookCreateDto bookCreateDto) {
         Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
-        BookDto bookDto = convertSaveEntityToDto(book);
+        BookDto bookDto = convertSavedEntityToDto(book);
         return bookDto;
     }
 }
