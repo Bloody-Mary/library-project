@@ -1,10 +1,7 @@
 package ru.babushkina.libraryproject.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.service.BookService;
@@ -29,7 +26,7 @@ public class BookController {
     }
 
     @PostMapping("/book/create")
-    BookDto createBook(@RequestParam BookCreateDto bookCreateDto) {
+    BookDto createBook(@RequestBody BookCreateDto bookCreateDto) {
         return bookService.createBook(bookCreateDto);
     }
 }
