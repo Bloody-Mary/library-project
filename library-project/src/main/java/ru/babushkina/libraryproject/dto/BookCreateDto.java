@@ -12,5 +12,5 @@ import ru.babushkina.libraryproject.model.Genre;
 @Builder
 public class BookCreateDto {
     private String name;
-    private String genre;
+    private Genre genre;
 }
