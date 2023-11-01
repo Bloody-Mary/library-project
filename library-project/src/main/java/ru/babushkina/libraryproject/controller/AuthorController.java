@@ -1,10 +1,8 @@
 package ru.babushkina.libraryproject.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.service.AuthorService;
 
@@ -31,5 +29,10 @@ public class AuthorController {
     @GetMapping("author/v3")
     AuthorDto getAuthorByNameV3(@RequestParam("name") String name) {
         return authorService.getByNameV3(name);
+    }
+
+    @PostMapping("/author/create")
+    AuthorDto createAuthor(@RequestParam AuthorCreateDto authorCreateDto) {
+        return authorService.createAuthor(authorCreateDto);
     }
 }
