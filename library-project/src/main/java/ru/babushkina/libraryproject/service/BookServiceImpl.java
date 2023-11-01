@@ -7,6 +7,7 @@ import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.repository.BookRepository;
@@ -46,5 +47,10 @@ public class BookServiceImpl implements BookService{
         });
         Book book = bookRepository.findOne(specification).orElseThrow();
         return convertEntityToDto(book);
+    }
+
+    @Override
+    public BookDto createBook(BookCreateDto bookCreateDto) {
+
     }
 }
