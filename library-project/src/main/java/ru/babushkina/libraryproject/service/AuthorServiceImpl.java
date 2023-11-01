@@ -98,4 +98,18 @@ public class AuthorServiceImpl implements AuthorService{
                 .surname(authorCreateDto.getSurname())
                 .build();
     }
+
+    private AuthorDto convertSavedEntityToDto(Author author) {
+        List<BookDto> bookDtoList = null;
+        if (author.getBooks() != null) {
+            bookDtoList = author.getBooks()
+                    .stream()
+                    .map(book -> BookDto.builder()
+                            .genre(book.getGenre().getName())
+                            .name(book.getName())
+                            .id(book.getId())
+                            .build())
+                    .toList();
+        }
+    }
 }
