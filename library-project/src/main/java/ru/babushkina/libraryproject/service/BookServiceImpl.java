@@ -55,4 +55,11 @@ public class BookServiceImpl implements BookService{
         BookDto bookDto = convertSavedEntityToDto(book);
         return bookDto;
     }
+
+    private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
+        return Book.builder()
+                .name(bookCreateDto.getName())
+                .genre(bookCreateDto.getGenre())
+                .build();
+    }
 }
