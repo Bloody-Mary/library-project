@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class AuthorUpdateDto {
-
+    private Long id;
+    private String name;
+    private String surname;
 }
