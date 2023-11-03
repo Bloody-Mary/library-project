@@ -1,10 +1,9 @@
 package ru.babushkina.libraryproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.babushkina.libraryproject.model.Genre;
+
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +11,7 @@ import ru.babushkina.libraryproject.model.Genre;
 @Builder
 public class BookCreateDto {
     private String name;
-    private Genre genre;
+    private String genre;
+    private Long genreId;
+    private Long authorId;
 }
