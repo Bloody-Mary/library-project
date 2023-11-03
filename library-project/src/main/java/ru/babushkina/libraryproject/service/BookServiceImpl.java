@@ -10,16 +10,22 @@ import org.springframework.stereotype.Service;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
+import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.model.Genre;
+import ru.babushkina.libraryproject.repository.AuthorRepository;
 import ru.babushkina.libraryproject.repository.BookRepository;
+import ru.babushkina.libraryproject.repository.GenreRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+    private final GenreRepository genreRepository;
 
     @Override
     public BookDto getByNameV1(String name) {
@@ -61,9 +67,13 @@ public class BookServiceImpl implements BookService{
     }
 
     private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
+        Author author = authorRepository.findById(bookCreateDto.getAuthorId()).orElseThrow();
+        Genre genre = genreRepository.findById(bookCreateDto.getGenreId()).orElseThrow();
+
         return Book.builder()
                 .name(bookCreateDto.getName())
-                .genre(bookCreateDto.getGenre())
+                .genre(genre)
+                .authors(Set.of(author))
                 .build();
     }
 
@@ -73,9 +83,9 @@ public class BookServiceImpl implements BookService{
             authorDtoList = book.getAuthors()
                     .stream()
                     .map(author -> AuthorDto.builder()
+                            .id(author.getId())
                             .name(author.getName())
                             .surname(author.getSurname())
-                            .id(author.getId())
                             .build())
                     .toList();
         }
