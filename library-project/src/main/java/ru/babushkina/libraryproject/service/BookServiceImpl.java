@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
+import ru.babushkina.libraryproject.dto.BookUpdateDto;
 import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.model.Genre;
@@ -96,6 +97,15 @@ public class BookServiceImpl implements BookService{
                 .genre(book.getGenre().getName())
                 .authors(authorDtoList)
                 .build();
+        return bookDto;
+    }
+
+    @Override
+    public BookDto updateBook(BookUpdateDto bookUpdateDto) {
+        Book book = bookRepository.findById(bookUpdateDto.getGenreId()).orElseThrow();
+        book.setName(bookUpdateDto.getName());
+        Book savedBook = bookRepository.save(book);
+        BookDto bookDto = convertEntityToDto(savedBook);
         return bookDto;
     }
 }
