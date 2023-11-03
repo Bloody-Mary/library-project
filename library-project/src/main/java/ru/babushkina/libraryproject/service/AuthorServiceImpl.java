@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
+import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.repository.AuthorRepository;
@@ -119,5 +120,11 @@ public class AuthorServiceImpl implements AuthorService{
                 .books(bookDtoList)
                 .build();
         return authorDto;
+    }
+
+    @Override
+    public AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto) {
+        Author author = authorRepository.findById(authorUpdateDto.getId()).orElseThrow();
+        author.setName
     }
 }
