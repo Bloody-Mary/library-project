@@ -125,6 +125,10 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto) {
         Author author = authorRepository.findById(authorUpdateDto.getId()).orElseThrow();
-        author.setName
+        author.setName(authorUpdateDto.getName());
+        author.setSurname(authorUpdateDto.getSurname());
+        Author savedAuthor = authorRepository.save(author);
+        AuthorDto authorDto = convertEntityToDto(savedAuthor);
+        return authorDto;
     }
 }
