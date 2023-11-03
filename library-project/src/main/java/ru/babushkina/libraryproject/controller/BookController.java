@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
+import ru.babushkina.libraryproject.dto.BookUpdateDto;
 import ru.babushkina.libraryproject.service.BookService;
 
 @RestController
@@ -28,5 +29,10 @@ public class BookController {
     @PostMapping("/book/create")
     BookDto createBook(@RequestBody BookCreateDto bookCreateDto) {
         return bookService.createBook(bookCreateDto);
+    }
+
+    @PutMapping("/book/update")
+    BookDto updateBook(@RequestBody BookUpdateDto bookUpdateDto) {
+        return bookService.updateBook(bookUpdateDto);
     }
 }
