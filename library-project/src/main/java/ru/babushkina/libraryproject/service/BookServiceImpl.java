@@ -108,4 +108,9 @@ public class BookServiceImpl implements BookService{
         BookDto bookDto = convertEntityToDto(savedBook);
         return bookDto;
     }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
