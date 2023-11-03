@@ -12,4 +12,5 @@ public interface AuthorService {
     AuthorDto getByNameV3(String name);
     AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
     AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
+    void deleteAuthor(Long id);
 }
