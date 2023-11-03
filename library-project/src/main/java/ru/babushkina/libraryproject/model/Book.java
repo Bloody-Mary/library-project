@@ -9,6 +9,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity
 public class Book {
     @Id
@@ -16,7 +17,6 @@ public class Book {
     private Long id;
 
     @Column(nullable = false)
-    @Setter
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
