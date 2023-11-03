@@ -131,4 +131,9 @@ public class AuthorServiceImpl implements AuthorService{
         AuthorDto authorDto = convertEntityToDto(savedAuthor);
         return authorDto;
     }
+
+    @Override
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
 }
