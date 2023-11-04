@@ -10,11 +10,14 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
     public UsersModel registerUser(String login, String password, String email) {
-        if (login != null && password != null) {
+        if (login == null || password == null) {
+            return null;
+        } else {
             UsersModel usersModel = new UsersModel();
             usersModel.setLogin(login);
             usersModel.setPassword(password);
             usersModel.setEmail(email);
+            return usersRepository.save(usersModel);
         }
     }
 }
