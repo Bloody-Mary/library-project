@@ -20,4 +20,8 @@ public class UsersService {
             return usersRepository.save(usersModel);
         }
     }
+
+    public UsersModel authenticate(String login, String password) {
+
+    }
 }
