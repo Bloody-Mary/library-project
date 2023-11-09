@@ -5,6 +5,8 @@ import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.model.Author;
 
+import java.util.List;
+
 public interface AuthorService {
     AuthorDto getAuthorById(Long id);
     AuthorDto getByNameV1(String name);
@@ -13,4 +15,5 @@ public interface AuthorService {
     AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
     AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
     void deleteAuthor(Long id);
+    List<AuthorDto> getAllAuthors();
 }
