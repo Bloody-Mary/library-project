@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>BOOKS</h2>
+    <h1>BOOKS</h1>
     <ul class="responsive-table">
         <li class="table-header">
             <div class="col col-1">ID</div>
