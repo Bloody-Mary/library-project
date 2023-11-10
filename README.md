@@ -90,9 +90,7 @@ a. Book data table implemented with FreeMarker and with different parameter sett
 b. Author data table implemented with FreeMarker and with different parameter settings in css and ftml files
 
 
-(Таблица данных об авторах,реализованная с помощью FreeMarker и с различными настройками параметров в файлах css и ftml).
+(Таблица данных об авторах,реализованная с помощью FreeMarker).
 
 
 ![Screenshot from 2023-11-09 20-00-08](https://github.com/Bloody-Mary/library-project/assets/37978402/b6ad7785-0248-4c15-9565-006ac3a76ab6)
-
-![Screenshot from 2023-11-09 20-00-50](https://github.com/Bloody-Mary/library-project/assets/37978402/382b82ca-3411-4f4a-bf42-5355383e7e39)
