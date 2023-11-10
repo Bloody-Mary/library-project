@@ -45,3 +45,24 @@ Queries to find an author by his name with a list of his books
 
 ![image](https://github.com/Bloody-Mary/library-project/assets/37978402/09796032-469a-4314-934c-3cdad015161d)
 
+
+Queries to Create book, Update book and Delete book using HTTP methods and CRUD operations
+
+(Запросы на создание книги, изменение информации о книге и удаление книги).
+
+1. Create a book - @PostMapping
+(Создание книги)
+
+![Screenshot from 2023-11-03 15-44-15](https://github.com/Bloody-Mary/library-project/assets/37978402/f0cc1cb3-03e5-46df-a331-a584ddcb252f)
+
+
+2. Update a book - PutMapping
+(Изменение информации о книге)
+
+![Screenshot from 2023-11-03 17-23-27](https://github.com/Bloody-Mary/library-project/assets/37978402/18dbf017-3408-4cd1-b3a7-9d324d8b626c)
+
+
+3. Delete a book - @DeleteMapping
+(Удаление книги)
+
+![Screenshot from 2023-11-03 17-45-17](https://github.com/Bloody-Mary/library-project/assets/37978402/72cacb38-6b87-462f-b974-76176795aa7b)
