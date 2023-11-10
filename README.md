@@ -69,8 +69,11 @@ c. Delete a book - @DeleteMapping
 
 
 4. Creating a controller with html pages using the FreeMarker
+
 (Создание контроллера с html страничками с помощью шаблонизатора FreeMarker).
+
 a. Book data table implemented with FreeMarker and with different parameter settings in css and ftml files
+
 (Таблица данных о книгах, реализованная с помощью FreeMarker и с различными настройками параметров в файлах css и ftml).
 
 
@@ -82,6 +85,7 @@ a. Book data table implemented with FreeMarker and with different parameter sett
 
 
 b. Author data table implemented with FreeMarker and with different parameter settings in css and ftml files
+
 (Таблица данных об авторах,реализованная с помощью FreeMarker и с различными настройками параметров в файлах css и ftml).
 
 
