@@ -11,6 +11,8 @@ import ru.babushkina.libraryproject.model.User;
 import ru.babushkina.libraryproject.repository.RoleRepository;
 import ru.babushkina.libraryproject.repository.UserRepository;
 
+import java.util.Optional;
+
 public class UserService implements UserDetailsService {
     @PersistenceContext
     private EntityManager em;
@@ -32,5 +34,10 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         return user;
+    }
+
+    public User findUserById(Long userId) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        return userFromDb.orElse(new User());
     }
 }
