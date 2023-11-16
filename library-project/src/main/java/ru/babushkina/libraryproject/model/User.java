@@ -15,5 +15,8 @@ public class User implements UserDetails {
     @Size(min=2, message = "Не менее 5 знаков")
     private String username;
 
+    @Size(min=2, message="Не менее 5 знаков")
+    private String password;
+
 
 }
