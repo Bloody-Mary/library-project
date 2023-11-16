@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
-    public List<User> allusers() {
+    public List<User> allUsers() {
         return  userRepository.findAll();
     }
 
