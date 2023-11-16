@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import ru.babushkina.libraryproject.model.Role;
 import ru.babushkina.libraryproject.model.User;
 import ru.babushkina.libraryproject.repository.RoleRepository;
 import ru.babushkina.libraryproject.repository.UserRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +55,9 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
+        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return true;
     }
 }
