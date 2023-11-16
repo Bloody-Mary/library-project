@@ -45,4 +45,13 @@ public class UserService implements UserDetailsService {
     public List<User> allusers() {
         return  userRepository.findAll();
     }
+
+    public boolean saveUser(User user) {
+        User userFromDB = userRepository.findByUsername(user.getUsername());
+
+        if (userFromDB != null) {
+            return false;
+        }
+
+    }
 }
