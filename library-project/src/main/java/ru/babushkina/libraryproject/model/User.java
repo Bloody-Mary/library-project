@@ -1,6 +1,7 @@
 package ru.babushkina.libraryproject.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.Transient;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Size;
@@ -18,5 +19,7 @@ public class User implements UserDetails {
     @Size(min=2, message="Не менее 5 знаков")
     private String password;
 
+    @Transient
+    private String passwordConfirm;
 
 }
