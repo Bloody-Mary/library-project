@@ -11,6 +11,7 @@ import ru.babushkina.libraryproject.model.User;
 import ru.babushkina.libraryproject.repository.RoleRepository;
 import ru.babushkina.libraryproject.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserService implements UserDetailsService {
@@ -39,5 +40,9 @@ public class UserService implements UserDetailsService {
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());
+    }
+
+    public List<User> allusers() {
+        return  userRepository.findAll();
     }
 }
