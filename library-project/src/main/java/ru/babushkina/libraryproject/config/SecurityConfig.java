@@ -21,6 +21,8 @@ import ru.babushkina.libraryproject.service.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
         http
@@ -41,3 +43,37 @@ public class SecurityConfig {
         return new UserDetailsServiceImpl(userRepository);
     }
 }
+
+//@Configuration
+//@EnableWebSecurity
+//public class SecurityConfig {
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests((authorize) ->
+//                        authorize.requestMatchers("/book").hasRole("USER")
+//                                .requestMatchers("/book/v2").hasRole("ADMIN")
+//                                .requestMatchers("/books").hasRole("ADMIN")
+//                                .anyRequest().authenticated()
+//                )
+//                .httpBasic();
+//
+//        return http.build();
+//    }
+//
+//    @Bean
+//    public UserDetailsService users() {
+//        User.UserBuilder users = User.withDefaultPasswordEncoder();
+//        UserDetails user = users
+//                .username("user")
+//                .password("password")
+//                .roles("USER")
+//                .build();
+//        UserDetails admin = users
+//                .username("admin")
+//                .password("password")
+//                .roles("USER", "ADMIN")
+//                .build();
+//        return new InMemoryUserDetailsManager(user, admin);
+//    }
+//}
