@@ -1,6 +1,10 @@
 CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL,
-  password VARCHAR(100) NOT NULL,
-  role VARCHAR(20) NOT NULL
+    id SERIAL PRIMARY KEY,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    role VARCHAR NOT NULL
 );
+
+Insert into users(password, username) values
+('password1', 'user1'),
+('password2', 'user2');

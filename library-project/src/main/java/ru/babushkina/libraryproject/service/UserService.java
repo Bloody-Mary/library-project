@@ -1,31 +1,27 @@
 package ru.babushkina.libraryproject.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.babushkina.libraryproject.model.User;
+import ru.babushkina.libraryproject.model.UserEntity;
 import ru.babushkina.libraryproject.repository.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
+    public UserEntity createUser(String username, String password, String roles) {
+        UserEntity user = new UserEntity();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRoles(roles);
+        return userRepository.save(user);
+    }
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole())
-                .build();
+    public UserEntity getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
