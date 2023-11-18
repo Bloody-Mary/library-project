@@ -17,31 +17,6 @@
 //import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //import ru.babushkina.libraryproject.repository.UserRepository;
 //
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
-//        http
-//                .authorizeRequests((authorize) ->
-//                        authorize
-//                                .requestMatchers("/book").hasRole("USER")
-//                                .requestMatchers("/book/v2").hasRole("ADMIN")
-//                                .requestMatchers("/books").hasRole("ADMIN")
-//                                .anyRequest().authenticated()
-//                )
-//                .httpBasic();
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public UserDetailsService userDetailsService(UserRepository userRepository) {
-//        return new UserDetailsServiceImpl(userRepository);
-//    }
-//}
 
 //@Configuration
 //@EnableWebSecurity
