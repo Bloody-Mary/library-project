@@ -94,3 +94,12 @@ b. Author data table implemented with FreeMarker and with different parameter se
 
 
 ![Screenshot from 2023-11-09 20-00-08](https://github.com/Bloody-Mary/library-project/assets/37978402/b6ad7785-0248-4c15-9565-006ac3a76ab6)
+
+
+5. Spring Security.
+
+
+a) To store users was used InMemoryUserDetailsManager.
+
+
+![Screenshot from 2023-11-18 21-30-41](https://github.com/Bloody-Mary/library-project/assets/37978402/5558dcfb-398d-4e73-91e2-a9516f9b8a5e)
