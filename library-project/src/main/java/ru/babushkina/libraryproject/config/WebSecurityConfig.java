@@ -11,8 +11,11 @@ import ru.babushkina.libraryproject.service.UserService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfiguration {
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    public WebSecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
