@@ -7,6 +7,8 @@ import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.service.AuthorService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class AuthorRestController {
@@ -33,7 +35,7 @@ public class AuthorRestController {
     }
 
     @PostMapping("/author/create")
-    AuthorDto createAuthor(@RequestBody AuthorCreateDto authorCreateDto) {
+    AuthorDto createAuthor(@RequestBody @Valid AuthorCreateDto authorCreateDto) {
         return authorService.createAuthor(authorCreateDto);
     }
 
