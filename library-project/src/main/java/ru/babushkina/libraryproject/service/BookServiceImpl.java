@@ -77,6 +77,13 @@ public class BookServiceImpl implements BookService{
     public BookDto getByNameV3(String name) {
         log.info("Get book by name {}", name);
         Specification<Book> specification = getBookByNameSpecification(name);
+        Book book = bookRepository.findOne(specification).orElseThrow(() -> {
+            log.error("Book with name {} not found", name);
+            throw new NoSuchElementException("No value present");
+        });
+        BookDto bookDto = convertEntityToDto(book);
+        log.info("Book: {}", bookDto.toString());
+        return bookDto;
 //        Specification<Book> specification = Specification.where(new Specification<Book>() {
 //            @Override
 //            public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
