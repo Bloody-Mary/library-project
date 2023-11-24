@@ -146,11 +146,22 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto updateBook(BookUpdateDto bookUpdateDto) {
-        Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
+        log.info("Update book: {}", bookUpdateDto);
+        Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow(() -> {
+            log.error("Book with id {} not found", bookUpdateDto.getId());
+            return new NoSuchElementException("No value present");
+        });
         book.setName(bookUpdateDto.getName());
+        book.setId(bookUpdateDto.getId());
         Book savedBook = bookRepository.save(book);
         BookDto bookDto = convertEntityToDto(savedBook);
+        log.info("Book updated: {}", bookDto);
         return bookDto;
+//        Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
+//        book.setName(bookUpdateDto.getName());
+//        Book savedBook = bookRepository.save(book);
+//        BookDto bookDto = convertEntityToDto(savedBook);
+//        return bookDto;
     }
 
     @Override
