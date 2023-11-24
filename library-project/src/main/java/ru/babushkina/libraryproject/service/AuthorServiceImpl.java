@@ -51,22 +51,22 @@ public class AuthorServiceImpl implements AuthorService{
                 .build();
     }
 
-    private AuthorDto convertEntityToDto(Author author) {
-        List<BookDto> bookDtoList = author.getBooks()
-                .stream()
-                .map(book -> BookDto.builder()
-                        .genre(book.getGenre().getName())
-                        .name(book.getName())
-                        .id(book.getId())
-                        .build()
-                ).toList();
-        return AuthorDto.builder()
-                .id(author.getId())
-                .name(author.getName())
-                .surname(author.getSurname())
-                .books(bookDtoList)
-                .build();
-    }
+//    private AuthorDto convertEntityToDto(Author author) {
+//        List<BookDto> bookDtoList = author.getBooks()
+//                .stream()
+//                .map(book -> BookDto.builder()
+//                        .genre(book.getGenre().getName())
+//                        .name(book.getName())
+//                        .id(book.getId())
+//                        .build()
+//                ).toList();
+//        return AuthorDto.builder()
+//                .id(author.getId())
+//                .name(author.getName())
+//                .surname(author.getSurname())
+//                .books(bookDtoList)
+//                .build();
+//    }
 
     @Override
     public AuthorDto getByNameV2(String name) {
@@ -89,7 +89,7 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public AuthorDto createAuthor(AuthorCreateDto authorCreateDto) {
         Author author = authorRepository.save(convertDtoToEntity(authorCreateDto));
-        AuthorDto authorDto = convertSavedEntityToDto(author);
+        AuthorDto authorDto = convertEntityToDto(author);
         return authorDto;
     }
 
@@ -100,7 +100,7 @@ public class AuthorServiceImpl implements AuthorService{
                 .build();
     }
 
-    private AuthorDto convertSavedEntityToDto(Author author) {
+    private AuthorDto convertEntityToDto(Author author) {
         List<BookDto> bookDtoList = null;
         if (author.getBooks() != null) {
             bookDtoList = author.getBooks()

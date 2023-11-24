@@ -1,8 +1,9 @@
 package ru.babushkina.libraryproject.dto;
 
 import lombok.*;
-import ru.babushkina.libraryproject.model.Genre;
 
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -10,7 +11,10 @@ import java.util.Set;
 @Data
 @Builder
 public class BookCreateDto {
+    @Size(min = 3, max = 10)
+    @NotBlank(message = "Необходимо указать название")
     private String name;
+
     private String genre;
     private Long genreId;
     private Long authorId;

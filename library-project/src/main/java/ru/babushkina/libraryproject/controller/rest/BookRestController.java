@@ -1,5 +1,6 @@
 package ru.babushkina.libraryproject.controller.rest;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
@@ -27,7 +28,7 @@ public class BookRestController {
     }
 
     @PostMapping("/book/create")
-    BookDto createBook(@RequestBody BookCreateDto bookCreateDto) {
+    BookDto createBook(@RequestBody @Valid BookCreateDto bookCreateDto) {
         return bookService.createBook(bookCreateDto);
     }
 
