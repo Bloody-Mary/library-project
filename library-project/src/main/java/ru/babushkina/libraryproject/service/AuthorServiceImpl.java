@@ -212,7 +212,7 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public List<AuthorDto> getAllAuthors() {
-        log.info("Get all authord");
+        log.info("Get all authors");
         List<Author> authors = authorRepository.findAll();
         List<AuthorDto> authorDtos = authors.stream()
                 .map(this:: convertEntityToDto)
