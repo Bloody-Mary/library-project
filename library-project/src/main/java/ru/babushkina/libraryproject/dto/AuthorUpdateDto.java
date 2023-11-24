@@ -16,6 +16,7 @@ public class AuthorUpdateDto {
     @Size(min = 2, max = 15)
     @NotBlank(message = "Необходимо указать имя")
     private String name;
+    @Size(min = 2, max = 15)
     @NotBlank(message = "Необходимо указать фамилию")
     private String surname;
 }
