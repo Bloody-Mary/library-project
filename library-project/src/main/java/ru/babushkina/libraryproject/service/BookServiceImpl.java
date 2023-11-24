@@ -75,14 +75,20 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto getByNameV3(String name) {
-        Specification<Book> specification = Specification.where(new Specification<Book>() {
-            @Override
-            public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.equal(root.get("name"), name);
-            }
-        });
-        Book book = bookRepository.findOne(specification).orElseThrow();
-        return convertEntityToDto(book);
+        log.info("Get book by name {}", name);
+        Specification<Book> specification = getBookByNameSpecification(name);
+//        Specification<Book> specification = Specification.where(new Specification<Book>() {
+//            @Override
+//            public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//                return criteriaBuilder.equal(root.get("name"), name);
+//            }
+//        });
+//        Book book = bookRepository.findOne(specification).orElseThrow();
+//        return convertEntityToDto(book);
+    }
+
+    private Specification<Book> getBookByNameSpecification(String name) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("name"), name);
     }
 
     @Override
