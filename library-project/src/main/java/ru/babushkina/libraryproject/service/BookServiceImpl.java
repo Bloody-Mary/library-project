@@ -59,8 +59,18 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto getByNameV2(String name) {
-        Book book = bookRepository.findBookByNameBySQL(name).orElseThrow();
-        return convertEntityToDto(book);
+        log.info("Get book by name {}", name);
+        Optional<Book> book = bookRepository.findBookByNameBySQL(name);
+        if (book.isPresent()) {
+            BookDto bookDto = convertEntityToDto(book.get());
+            log.info("Book: {}", bookDto.toString());
+            return bookDto;
+        } else {
+            log.error("Book with name {} not found", name);
+            throw new NoSuchElementException("No value present");
+        }
+//        Book book = bookRepository.findBookByNameBySQL(name).orElseThrow();
+//        return convertEntityToDto(book);
     }
 
     @Override
