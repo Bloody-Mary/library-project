@@ -42,8 +42,16 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public AuthorDto getByNameV1(String name) {
-        Author author = authorRepository.findAuthorByName(name).orElseThrow();
-        return convertEntityToDto(author);
+        log.info("Get author by name: {}", name);
+        Optional<Author> author = authorRepository.findAuthorByName(name);
+        if (author.isPresent()) {
+            AuthorDto authorDto = convertEntityToDto(author.get());
+            log.info("Author: {}", authorDto.toString());
+            return authorDto;
+        } else {
+            log.error("Author with name {} not found", name);
+            throw new NoSuchElementException("No value present");
+        }
     }
 
     private AuthorDto convertToDto(Author author) {
