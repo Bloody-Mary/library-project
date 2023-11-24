@@ -177,7 +177,14 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookDto> getAllBooks() {
+        log.info("Get all books");
         List<Book> books = bookRepository.findAll();
-        return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
+        List<BookDto> bookDtos = books.stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
+        log.info("Found {} books", bookDtos.size());
+        return bookDtos;
+//        List<Book> books = bookRepository.findAll();
+//        return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 }
