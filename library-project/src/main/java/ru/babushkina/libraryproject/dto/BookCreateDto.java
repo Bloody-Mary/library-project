@@ -16,6 +16,8 @@ public class BookCreateDto {
     private String name;
     @NotBlank(message = "Необходимо указать жанр")
     private String genre;
+    @NotBlank(message = "Необходимо указать номер id жанра")
     private Long genreId;
+    @NotBlank(message = "Необходимо указать номер id автора")
     private Long authorId;
 }
