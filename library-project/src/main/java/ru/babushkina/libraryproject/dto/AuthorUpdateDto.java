@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AuthorUpdateDto {
     private Long id;
-    @Size(min = 3, max = 10)
+    @Size(min = 2, max = 15)
     @NotBlank(message = "Необходимо указать имя")
     private String name;
     @NotBlank(message = "Необходимо указать фамилию")
