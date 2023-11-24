@@ -35,7 +35,7 @@ public class BookRestController {
     }
 
     @PutMapping("/book/update")
-    BookDto updateBook(@RequestBody BookUpdateDto bookUpdateDto) {
+    BookDto updateBook(@RequestBody @Valid BookUpdateDto bookUpdateDto) {
         return bookService.updateBook(bookUpdateDto);
     }
 
