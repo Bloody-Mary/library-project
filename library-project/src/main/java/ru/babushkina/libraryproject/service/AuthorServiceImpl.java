@@ -16,6 +16,8 @@ import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.repository.AuthorRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,8 +28,16 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public AuthorDto getAuthorById(Long id) {
-        Author author = authorRepository.findById(id).orElseThrow();
-        return convertToDto(author);
+        log.info("Get author by id: {}", id);
+        Optional<Author> author = authorRepository.findById(id);
+        if (author.isPresent()) {
+            AuthorDto authorDto = convertEntityToDto(author.get());
+            log.info("Author: {}", authorDto.toString());
+            return authorDto;
+        } else {
+            log.error("Author with id {} not found", id);
+            throw new NoSuchElementException("No value present");
+        }
     }
 
     @Override
