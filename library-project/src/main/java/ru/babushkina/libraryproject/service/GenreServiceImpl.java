@@ -11,6 +11,8 @@ import ru.babushkina.libraryproject.repository.GenreRepository;
 
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +22,18 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public GenreDto getGenreById(Long id) {
-        Genre genre = genreRepository.findById(id).orElseThrow();
-        return convertToDto(genre);
+        log.info("Get genre by id: {}", id);
+        Optional<Genre> genre = genreRepository.findById(id);
+        if (genre.isPresent()) {
+            GenreDto genreDto = convertToDto(genre.get());
+            log.info("Genre: {}", genreDto.toString());
+            return genreDto;
+        } else {
+            log.error("Genre with id {} was not found", id);
+            throw new NoSuchElementException("No value present");
+        }
+//        Genre genre = genreRepository.findById(id).orElseThrow();
+//        return convertToDto(genre);
     }
 
     private GenreDto convertToDto(Genre genre) {
