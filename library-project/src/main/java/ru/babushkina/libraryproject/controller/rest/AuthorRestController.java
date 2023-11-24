@@ -1,5 +1,6 @@
 package ru.babushkina.libraryproject.controller.rest;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.babushkina.libraryproject.dto.AuthorCreateDto;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@SecurityRequirement(name = "library-users")
 public class AuthorRestController {
     private final AuthorService authorService;
 
