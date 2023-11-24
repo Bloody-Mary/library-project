@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @Builder
 public class BookCreateDto {
-    @Size(min = 3, max = 10)
+    @Size(min = 1, max = 25)
     @NotBlank(message = "Необходимо указать название")
     private String name;
     @NotBlank(message = "Необходимо указать жанр")
