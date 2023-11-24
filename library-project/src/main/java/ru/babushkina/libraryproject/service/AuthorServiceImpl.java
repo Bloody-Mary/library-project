@@ -135,7 +135,7 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public AuthorDto createAuthor(AuthorCreateDto authorCreateDto) {
-        log.info("Info about author: {}", authorCreateDto.toString());
+        log.info("Create author: {}", authorCreateDto.toString());
         Author author = convertDtoToEntity(authorCreateDto);
         author = authorRepository.save(author);
         AuthorDto authorDto = convertEntityToDto(author);

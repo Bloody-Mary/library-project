@@ -100,9 +100,15 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto createBook(BookCreateDto bookCreateDto) {
-        Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
-        BookDto bookDto = convertSavedEntityToDto(book);
+        log.info("Create book: {}", bookCreateDto.toString());
+        Book book = convertDtoToEntity(bookCreateDto);
+        book = bookRepository.save(book);
+        BookDto bookDto = convertEntityToDto(book);
+        log.info("Book created: {}", bookDto.toString());
         return bookDto;
+//        Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
+//        BookDto bookDto = convertSavedEntityToDto(book);
+//        return bookDto;
     }
 
     private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
