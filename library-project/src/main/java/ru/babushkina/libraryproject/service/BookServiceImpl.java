@@ -19,10 +19,7 @@ import ru.babushkina.libraryproject.repository.AuthorRepository;
 import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.repository.GenreRepository;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -166,7 +163,16 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public void deleteBook(Long id) {
-        bookRepository.deleteById(id);
+        log.info("Delete book with id: {}", id);
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            bookRepository.deleteById(id);
+            log.info("Book with id {} was deleted", id);
+        } else {
+            log.error("An error acquired while deleting book with id {}", id);
+            throw new NoSuchElementException("No value present");
+        }
+//        bookRepository.deleteById(id);
     }
 
     @Override
