@@ -38,6 +38,8 @@ public class AuthorServiceImpl implements AuthorService{
             log.error("Author with id {} not found", id);
             throw new NoSuchElementException("No value present");
         }
+//        Author author = authorRepository.findById(id).orElseThrow();
+//        return convertToDto(author);
     }
 
     @Override
@@ -52,6 +54,8 @@ public class AuthorServiceImpl implements AuthorService{
             log.error("Author with name {} not found", name);
             throw new NoSuchElementException("No value present");
         }
+//        Author author = authorRepository.findAuthorByName(name).orElseThrow();
+//        return convertEntityToDto(author);
     }
 
     private AuthorDto convertToDto(Author author) {
@@ -100,6 +104,8 @@ public class AuthorServiceImpl implements AuthorService{
             log.error("Author with name {} not found", name);
             throw new NoSuchElementException("No value present");
         }
+//        Author author = authorRepository.findAuthorByNameBySQL(name).orElseThrow();
+//        return convertEntityToDto(author);
     }
 
     @Override
