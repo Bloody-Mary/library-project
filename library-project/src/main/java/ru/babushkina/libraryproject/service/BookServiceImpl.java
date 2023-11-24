@@ -20,6 +20,8 @@ import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.repository.GenreRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -33,8 +35,18 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto getByNameV1(String name) {
-       Book book = bookRepository.findBookByName(name).orElseThrow();
-       return convertEntityToDto(book);
+        log.info("Get book by name {}", name);
+        Optional<Book> book = bookRepository.findBookByName(name);
+        if (book.isPresent()) {
+            BookDto bookDto = convertEntityToDto(book.get());
+            log.info("Book: {}", bookDto.toString());
+            return bookDto;
+        } else {
+            log.error("Book with name {} not found", name);
+            throw new NoSuchElementException("No value present");
+        }
+//       Book book = bookRepository.findBookByName(name).orElseThrow();
+//       return convertEntityToDto(book);
     }
 
     private BookDto convertEntityToDto(Book book) {
