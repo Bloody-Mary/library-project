@@ -28,11 +28,6 @@ public class AuthorServiceTest {
     @InjectMocks
     private AuthorServiceImpl authorService;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void testGetAuthorById() {
         Long id = 1L;
@@ -76,5 +71,15 @@ public class AuthorServiceTest {
         Assertions.assertEquals(authorDto.getId(), author.getId());
         Assertions.assertEquals(authorDto.getName(), author.getName());
         Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
+    }
+
+    @Test
+    public void testGetByNameV1NotFound() {
+        String name = "Джон";
+        when(authorRepository.findAuthorByName(name)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV1(name));
+
+        verify(authorRepository).findAuthorByName(name);
     }
 }

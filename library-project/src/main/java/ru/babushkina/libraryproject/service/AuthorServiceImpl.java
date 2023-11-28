@@ -54,8 +54,6 @@ public class AuthorServiceImpl implements AuthorService{
             log.error("Author with name {} not found", name);
             throw new NoSuchElementException("No value present");
         }
-//        Author author = authorRepository.findAuthorByName(name).orElseThrow();
-//        return convertEntityToDto(author);
     }
 
     private AuthorDto convertToDto(Author author) {
