@@ -211,4 +211,14 @@ public class AuthorServiceTest {
             authorService.updateAuthor(authorUpdateDto);
         });
     }
+
+    @Test
+    public void testDeleteAuthor() {
+        Long authorId = 1L;
+        Author author = new Author();
+        author.setId(authorId);
+        Mockito.when(authorRepository.findById(authorId)).thenReturn(Optional.of(author));
+        authorService.deleteAuthor(authorId);
+        Mockito.verify(authorRepository, Mockito.times(1)).deleteById(authorId);
+    }
 }
