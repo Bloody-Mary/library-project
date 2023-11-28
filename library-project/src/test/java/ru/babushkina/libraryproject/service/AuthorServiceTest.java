@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
+import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.model.Book;
@@ -20,6 +21,7 @@ import ru.babushkina.libraryproject.repository.AuthorRepository;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -54,7 +56,7 @@ public class AuthorServiceTest {
         Long id = 1L;
         when(authorRepository.findById(id)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(IllegalStateException.class, () -> authorService.getAuthorById(id));
+        assertThrows(IllegalStateException.class, () -> authorService.getAuthorById(id));
 
         verify(authorRepository).findById(id);
     }
@@ -80,7 +82,7 @@ public class AuthorServiceTest {
         String name = "Andrew";
         when(authorRepository.findAuthorByName(name)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV1(name));
+        assertThrows(NoSuchElementException.class, () -> authorService.getByNameV1(name));
 
         verify(authorRepository).findAuthorByName(name);
     }
@@ -106,7 +108,7 @@ public class AuthorServiceTest {
     public void testGetByNameV2NotFound() {
         String name = "Alex";
         when(authorRepository.findAuthorByName(name)).thenReturn(Optional.empty());
-        Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV2(name));
+        assertThrows(NoSuchElementException.class, () -> authorService.getByNameV2(name));
         verify(authorRepository).findAuthorByName(name);
     }
 
@@ -143,7 +145,7 @@ public class AuthorServiceTest {
         Specification<Author> specification = getSpecificationByName(name);
         Mockito.when(authorRepository.findOne(specification)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV3(name));
+        assertThrows(NoSuchElementException.class, () -> authorService.getByNameV3(name));
 
         Mockito.verify(authorRepository).findOne(specification);
     }
@@ -167,4 +169,46 @@ public class AuthorServiceTest {
         verify(authorRepository, times(1)).save(any(Author.class));
     }
 
+    @Test
+    public void testUpdateAuthor() {
+        AuthorUpdateDto authorUpdateDto = new AuthorUpdateDto();
+        authorUpdateDto.setId(1L);
+        authorUpdateDto.setName("New Name");
+        authorUpdateDto.setSurname("New Surname");
+
+        Author existingAuthor = new Author();
+        existingAuthor.setName("Old Name");
+        existingAuthor.setSurname("Old Surname");
+
+        Author savedAuthor = new Author();
+        savedAuthor.setId(1L);
+        savedAuthor.setName("New Name");
+        savedAuthor.setSurname("New Surname");
+
+        AuthorDto expectedAuthorDto = new AuthorDto();
+        expectedAuthorDto.setId(1L);
+        expectedAuthorDto.setName("New Name");
+        expectedAuthorDto.setSurname("New Surname");
+
+        when(authorRepository.findById(1L)).thenReturn(Optional.of(existingAuthor));
+        when(authorRepository.save(any(Author.class))).thenReturn(savedAuthor);
+
+        AuthorDto actualAuthorDto = authorService.updateAuthor(authorUpdateDto);
+
+        assertEquals(expectedAuthorDto, actualAuthorDto);
+        verify(authorRepository, times(1)).findById(1L);
+        verify(authorRepository, times(1)).save(any(Author.class));
+    }
+
+    @Test
+    void updateAuthor_ShouldThrowNoSuchElementException_WhenAuthorDoesNotExist() {
+        AuthorUpdateDto authorUpdateDto = new AuthorUpdateDto();
+        authorUpdateDto.setId(1L);
+
+        when(authorRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> {
+            authorService.updateAuthor(authorUpdateDto);
+        });
+    }
 }
