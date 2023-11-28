@@ -5,8 +5,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
+import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
+import ru.babushkina.libraryproject.dto.BookUpdateDto;
 import ru.babushkina.libraryproject.model.Author;
 import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.model.Genre;
@@ -115,28 +117,41 @@ public class BookServiceTest {
 
     @Test
     public void testCreateBook() {
-        Long bookId = 1L;
-        String bookName = "Example Book";
-        Genre genre = new Genre();
-        Set<Author> authors = new HashSet<>();
-        genre.setId(1L);
-        genre.setName("Fiction");
-
+        // Arrange
         BookCreateDto bookCreateDto = new BookCreateDto();
-        bookCreateDto.setName(bookName);
-        bookCreateDto.setGenre("Fiction");
-
-        Book book = new Book(bookId, bookName, genre, authors);
-
+        Book book = new Book();
         BookDto expectedBookDto = new BookDto();
-        expectedBookDto.setName(book.getName());
-        expectedBookDto.setGenre(book.getGenre().getName());
 
         when(bookRepository.save(any(Book.class))).thenReturn(book);
 
+        // Act
         BookDto actualBookDto = bookService.createBook(bookCreateDto);
 
+        // Assert
         assertEquals(expectedBookDto, actualBookDto);
         verify(bookRepository, times(1)).save(any(Book.class));
+    }
+
+    @Test
+    public void testUpdateBook() {
+        Long bookId = 1L;
+        String bookName = "Updated Book";
+        Genre genre = new Genre();
+        Set<Author> books = new HashSet<>();
+        BookUpdateDto bookUpdateDto = new BookUpdateDto(bookId, bookName);
+        Book book = new Book(bookId, "Existing Book", genre, books);
+        Book updatedBook = new Book(bookId, bookName, genre, books);
+
+        when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
+        when(bookRepository.save(book)).thenReturn(updatedBook);
+
+        BookDto updatedBookDto = bookService.updateBook(bookUpdateDto);
+
+        assertNotNull(updatedBookDto);
+        assertEquals(updatedBookDto.getId(), updatedBook.getId());
+        assertEquals(updatedBookDto.getName(), updatedBook.getName());
+
+        verify(bookRepository, times(1)).findById(bookId);
+        verify(bookRepository, times(1)).save(book);
     }
 }
