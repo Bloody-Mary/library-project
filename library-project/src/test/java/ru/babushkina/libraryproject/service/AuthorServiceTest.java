@@ -1,5 +1,6 @@
 package ru.babushkina.libraryproject.service;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -106,5 +107,20 @@ public class AuthorServiceTest {
         when(authorRepository.findAuthorByName(name)).thenReturn(Optional.empty());
         Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV2(name));
         verify(authorRepository).findAuthorByName(name);
+    }
+
+    @Test
+    public void testGetByNameV3() {
+        Long id = 4L;
+        String name = "Sam";
+        String surname = "Johnson";
+        Set<Book> books = new HashSet<>();
+        Author author = new Author(id, name, surname, books);
+        when(authorRepository.findAuthorByName(name)).thenReturn(Optional.of(author));
+        AuthorDto authorDto = authorService.getByNameV3(name);
+        verify(authorRepository).findAuthorByName(name);
+        Assertions.assertEquals(authorDto.getId(), author.getId());
+        Assertions.assertEquals(authorDto.getName(), author.getName());
+        Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
     }
 }
