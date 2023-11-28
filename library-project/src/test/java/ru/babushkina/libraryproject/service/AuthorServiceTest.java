@@ -230,5 +230,16 @@ public class AuthorServiceTest {
         verify(authorRepository, times(1)).findById(id);
     }
 
-
+    @Test
+    public void testGetAllAuthors() {
+        List<Author> authors = new ArrayList<>();
+        authors.add(new Author(1L, "Samuel", "Smith", null));
+        authors.add(new Author(2L, "Jane", "Ostin", null));
+        when(authorRepository.findAll()).thenReturn(authors);
+        List<AuthorDto> authorDtos = authorService.getAllAuthors();
+        assertEquals(authorDtos.size(), authors.size());
+        assertEquals(authorDtos.get(0).getName(), "Samuel");
+        assertEquals(authorDtos.get(1).getName(), "Jane");
+        verify(authorRepository, times(1)).findAll();
+    }
 }
