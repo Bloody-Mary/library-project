@@ -53,4 +53,20 @@ public class AuthorServiceTest {
 
         verify(authorRepository).findById(id);
     }
+    @Test
+    public void testGetByNameV1() {
+        Long id = 2L;
+        String name = "Andrew";
+        String surname = "Smith";
+        Set<Book> books = new HashSet<>();
+        Author author = new Author(id, name, surname, books);
+        when(authorRepository.findAuthorByName(name)).thenReturn(Optional.of(author));
+
+        AuthorDto authorDto = authorService.getByNameV1(name);
+
+        verify(authorRepository).findAuthorByName(name);
+        Assertions.assertEquals(authorDto.getId(), author.getId());
+        Assertions.assertEquals(authorDto.getName(), author.getName());
+        Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
+    }
 }
