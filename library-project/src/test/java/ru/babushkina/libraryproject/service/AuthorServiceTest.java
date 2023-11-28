@@ -114,7 +114,6 @@ public class AuthorServiceTest {
 
     @Test
     public void testGetByNameV3() {
-        // Создание тестовых данных
         Long id = 4L;
         String name = "Samuel";
         String surname = "Jackson";
@@ -122,20 +121,16 @@ public class AuthorServiceTest {
         List<BookDto> booksList = new ArrayList<>();
         Author author = new Author(id, name, surname, books);
         AuthorDto authorDto = new AuthorDto(id, name, surname, booksList);
-        // Мокирование authorRepository
         Specification<Author> specification = getSpecificationByName(name);
         Mockito.when(authorRepository.findOne(specification)).thenReturn(Optional.of(author));
 
-        // Вызов тестируемого метода
         AuthorDto result = authorService.getByNameV3(name);
 
-        // Проверка результатов
         Assertions.assertNotNull(result);
         Assertions.assertEquals(authorDto.getId(), result.getId());
         Assertions.assertEquals(authorDto.getName(), result.getName());
         Assertions.assertEquals(authorDto.getSurname(), result.getSurname());
 
-        // Проверка вызовов методов
         Mockito.verify(authorRepository).findOne(specification);
     }
 
@@ -157,9 +152,7 @@ public class AuthorServiceTest {
     @Test
     public void testCreateAuthor() {
         AuthorCreateDto authorCreateDto = new AuthorCreateDto();
-
         Author author = new Author();
-
         AuthorDto expectedAuthorDto = new AuthorDto();
         when(authorRepository.save(any(Author.class))).thenReturn(author);
 
