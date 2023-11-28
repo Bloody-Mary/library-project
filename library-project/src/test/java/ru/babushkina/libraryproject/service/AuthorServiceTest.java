@@ -1,9 +1,11 @@
 package ru.babushkina.libraryproject.service;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.model.Author;
@@ -11,6 +13,7 @@ import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.repository.AuthorRepository;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,6 +27,11 @@ public class AuthorServiceTest {
 
     @InjectMocks
     private AuthorServiceImpl authorService;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testGetAuthorById() {
