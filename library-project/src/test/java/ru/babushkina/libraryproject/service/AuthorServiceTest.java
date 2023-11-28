@@ -221,4 +221,14 @@ public class AuthorServiceTest {
         authorService.deleteAuthor(authorId);
         Mockito.verify(authorRepository, Mockito.times(1)).deleteById(authorId);
     }
+
+    @Test
+    void deleteAuthor_InvalidId_ThrowNoSuchElementException() {
+        Long id = 1L;
+        when(authorRepository.findById(id)).thenReturn(Optional.empty());
+        assertThrows(NoSuchElementException.class, () -> authorService.deleteAuthor(id));
+        verify(authorRepository, times(1)).findById(id);
+    }
+
+
 }
