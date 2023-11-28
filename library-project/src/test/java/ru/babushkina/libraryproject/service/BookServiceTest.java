@@ -37,13 +37,30 @@ public class BookServiceTest {
 
         when(bookRepository.findBookByName(bookName)).thenReturn(optionalBook);
 
-        // Act
         BookDto bookDto = bookService.getByNameV1(bookName);
 
-        // Assert
         assertNotNull(bookDto);
         assertEquals(bookDto.getName(), book.getName());
 
         verify(bookRepository, times(1)).findBookByName(bookName);
+    }
+
+    @Test
+    public void testGetByNameV2() {
+        Long id = 2L;
+        String bookName = "Мастер и Маргарита";
+        Genre genre = new Genre();
+        Set<Author> books = new HashSet<>();
+        Book book = new Book(id, bookName, genre, books);
+        Optional<Book> optionalBook = Optional.of(book);
+
+        when(bookRepository.findBookByNameBySQL(bookName)).thenReturn(optionalBook);
+
+        BookDto bookDto = bookService.getByNameV2(bookName);
+
+        assertNotNull(bookDto);
+        assertEquals(bookDto.getName(), book.getName());
+
+        verify(bookRepository, times(1)).findBookByNameBySQL(bookName);
     }
 }
