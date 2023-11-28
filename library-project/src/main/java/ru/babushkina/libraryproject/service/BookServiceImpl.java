@@ -42,8 +42,6 @@ public class BookServiceImpl implements BookService{
             log.error("Book with name {} not found", name);
             throw new NoSuchElementException("No value present");
         }
-//       Book book = bookRepository.findBookByName(name).orElseThrow();
-//       return convertEntityToDto(book);
     }
 
     private BookDto convertEntityToDto(Book book) {
@@ -66,8 +64,6 @@ public class BookServiceImpl implements BookService{
             log.error("Book with name {} not found", name);
             throw new NoSuchElementException("No value present");
         }
-//        Book book = bookRepository.findBookByNameBySQL(name).orElseThrow();
-//        return convertEntityToDto(book);
     }
 
     @Override
@@ -103,9 +99,6 @@ public class BookServiceImpl implements BookService{
         BookDto bookDto = convertEntityToDto(book);
         log.info("Book created: {}", bookDto.toString());
         return bookDto;
-//        Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
-//        BookDto bookDto = convertSavedEntityToDto(book);
-//        return bookDto;
     }
 
     private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
@@ -154,11 +147,6 @@ public class BookServiceImpl implements BookService{
         BookDto bookDto = convertEntityToDto(savedBook);
         log.info("Book updated: {}", bookDto);
         return bookDto;
-//        Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
-//        book.setName(bookUpdateDto.getName());
-//        Book savedBook = bookRepository.save(book);
-//        BookDto bookDto = convertEntityToDto(savedBook);
-//        return bookDto;
     }
 
     @Override
@@ -172,7 +160,6 @@ public class BookServiceImpl implements BookService{
             log.error("An error acquired while deleting book with id {}", id);
             throw new NoSuchElementException("No value present");
         }
-//        bookRepository.deleteById(id);
     }
 
     @Override
@@ -184,7 +171,5 @@ public class BookServiceImpl implements BookService{
                 .collect(Collectors.toList());
         log.info("Found {} books", bookDtos.size());
         return bookDtos;
-//        List<Book> books = bookRepository.findAll();
-//        return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 }
