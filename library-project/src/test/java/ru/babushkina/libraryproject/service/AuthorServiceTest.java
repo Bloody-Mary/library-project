@@ -82,4 +82,29 @@ public class AuthorServiceTest {
 
         verify(authorRepository).findAuthorByName(name);
     }
+
+    @Test
+    public void testGetByNameV2() {
+        Long id = 3L;
+        String name = "Alex";
+        String surname = "Kane";
+        Set<Book> books = new HashSet<>();
+        Author author = new Author(id, name, surname, books);
+        when(authorRepository.findAuthorByName(name)).thenReturn(Optional.of(author));
+
+        AuthorDto authorDto = authorService.getByNameV2(name);
+
+        verify(authorRepository).findAuthorByName(name);
+        Assertions.assertEquals(authorDto.getId(), author.getId());
+        Assertions.assertEquals(authorDto.getName(), author.getName());
+        Assertions.assertEquals(authorDto.getSurname(), author.getSurname());
+    }
+
+    @Test
+    public void testGetByNameV2NotFound() {
+        String name = "Alex";
+        when(authorRepository.findAuthorByName(name)).thenReturn(Optional.empty());
+        Assertions.assertThrows(NoSuchElementException.class, () -> authorService.getByNameV2(name));
+        verify(authorRepository).findAuthorByName(name);
+    }
 }
