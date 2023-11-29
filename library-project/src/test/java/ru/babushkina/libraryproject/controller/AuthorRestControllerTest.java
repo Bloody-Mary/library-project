@@ -5,15 +5,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.service.AuthorService;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -84,5 +90,25 @@ public class AuthorRestControllerTest {
                 .andExpect(jsonPath("$.name").value(authorName));
     }
 
+    @Test
+    public void testCreateAuthor() throws Exception {
+        // Arrange
+        AuthorCreateDto authorCreateDto = new AuthorCreateDto();
+        authorCreateDto.setName("John");
+        authorCreateDto.setSurname("Doe");
 
+        AuthorDto expectedAuthorDto = new AuthorDto();
+        expectedAuthorDto.setName(authorCreateDto.getName());
+        expectedAuthorDto.setSurname(authorCreateDto.getSurname());
+
+        when(authorService.createAuthor(authorCreateDto)).thenReturn(expectedAuthorDto);
+
+        // Act & Assert
+        mockMvc.perform(post("/author/create")
+                        .contentType("application/json")
+                        .content("{\"name\":\"John\",\"surname\":\"Doe\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(authorCreateDto.getName()))
+                .andExpect(jsonPath("$.surname").value(authorCreateDto.getSurname()));
+    }
 }
