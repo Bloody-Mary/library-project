@@ -170,4 +170,17 @@ public class BookServiceTest {
         verify(bookRepository, times(1)).findById(bookId);
         verify(bookRepository, times(1)).deleteById(bookId);
     }
+
+    @Test
+    public void testDeleteBookNotFound() {
+        Long bookId = 1L;
+
+        when(bookRepository.findById(bookId)).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> {bookService.deleteBook(bookId);
+        });
+
+        verify(bookRepository, times(1)).findById(bookId);
+        verify(bookRepository, never()).deleteById(anyLong());
+    }
 }
