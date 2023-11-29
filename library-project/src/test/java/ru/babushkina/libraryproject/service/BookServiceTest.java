@@ -154,4 +154,20 @@ public class BookServiceTest {
         verify(bookRepository, times(1)).findById(bookId);
         verify(bookRepository, times(1)).save(book);
     }
+
+    @Test
+    public void testDeleteBook() {
+        Long bookId = 1L;
+        Genre genre = new Genre();
+        Set<Author> books = new HashSet<>();
+        Optional<Book> book = Optional.of(new Book(bookId, "Example Book", genre, books));
+
+        when(bookRepository.findById(bookId)).thenReturn(book);
+        assertDoesNotThrow(() -> {
+            bookService.deleteBook(bookId);
+        });
+
+        verify(bookRepository, times(1)).findById(bookId);
+        verify(bookRepository, times(1)).deleteById(bookId);
+    }
 }
