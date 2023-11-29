@@ -6,23 +6,23 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
+import ru.babushkina.libraryproject.model.Author;
+import ru.babushkina.libraryproject.model.Book;
+import ru.babushkina.libraryproject.repository.AuthorRepository;
+import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.service.AuthorService;
 
-import static net.bytebuddy.matcher.ElementMatchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -39,6 +39,9 @@ public class AuthorRestControllerTest {
 
     @InjectMocks
     private AuthorController authorController;
+
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -137,6 +140,20 @@ public class AuthorRestControllerTest {
         assertEquals(authorUpdateDto.getId(), updatedAuthorDto.getId());
         assertEquals(authorUpdateDto.getName(), updatedAuthorDto.getName());
         assertEquals(authorUpdateDto.getSurname(), updatedAuthorDto.getSurname());
+    }
 
+    @Test
+    public void testDeleteAuthor() throws Exception {
+        Author author = new Author();
+        author.setId(11L);
+        author.setName("John");
+        author.setSurname("Doe");
+        author = authorRepository.save(author);
+
+        Long authorId = author.getId();
+        mockMvc.perform(delete("/author/delete/{id}", authorId))
+                .andExpect(status().isOk());
+
+        assertFalse(authorRepository.existsById(authorId));
     }
 }
