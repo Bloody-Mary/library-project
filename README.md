@@ -94,9 +94,59 @@ b. Author data table implemented with FreeMarker and with different parameter se
 
 
 ![Screenshot from 2023-11-09 20-00-08](https://github.com/Bloody-Mary/library-project/assets/37978402/b6ad7785-0248-4c15-9565-006ac3a76ab6)
+![Screenshot from 2023-11-18 21-30-50](https://github.com/Bloody-Mary/library-project/assets/37978402/79014a36-5e84-4baa-864d-a44d91071258)
 
 
 5. Spring Security.
 
 
 ![Screenshot from 2023-11-18 21-30-41](https://github.com/Bloody-Mary/library-project/assets/37978402/5558dcfb-398d-4e73-91e2-a9516f9b8a5e)
+
+
+6. Java Validation, Swagger, log4j
+
+
+![Screenshot from 2023-11-24 15-43-42](https://github.com/Bloody-Mary/library-project/assets/37978402/d65666f0-b50b-4b5a-bfb0-c5b495c3a5e4)
+
+
+![Screenshot from 2023-11-24 15-43-12](https://github.com/Bloody-Mary/library-project/assets/37978402/c0ff704e-7a62-41e6-8b5e-7c4be6fa0941)
+
+![Screenshot from 2023-11-24 15-52-48](https://github.com/Bloody-Mary/library-project/assets/37978402/64e20a6a-3a96-44cc-aaeb-d13429637113)
+
+![Screenshot from 2023-11-24 15-56-31](https://github.com/Bloody-Mary/library-project/assets/37978402/dbb6a4b5-4384-4e99-a866-660bc802ad8a)
+
+![Screenshot from 2023-11-24 16-05-29](https://github.com/Bloody-Mary/library-project/assets/37978402/49a822d3-a413-4dbb-b6c3-3e7262449058)
+
+![Screenshot from 2023-11-24 16-06-07](https://github.com/Bloody-Mary/library-project/assets/37978402/c0330786-b273-47ed-9779-f8d44e75fc8f)
+
+![Screenshot from 2023-11-24 16-08-13](https://github.com/Bloody-Mary/library-project/assets/37978402/11f2e906-72eb-4ba4-9776-04fbc35aa51a)
+
+![Screenshot from 2023-11-24 16-46-48](https://github.com/Bloody-Mary/library-project/assets/37978402/b0eae2bd-6f90-487d-9850-9ee6e89f47d2)
+
+![Screenshot from 2023-11-24 16-46-10](https://github.com/Bloody-Mary/library-project/assets/37978402/66115c55-5a50-484b-82e1-6bd4f2262c60)
+
+![Screenshot from 2023-11-24 16-55-18](https://github.com/Bloody-Mary/library-project/assets/37978402/4df297f9-916e-411f-9bae-946a7c480686)
+
+![Screenshot from 2023-11-24 16-54-55](https://github.com/Bloody-Mary/library-project/assets/37978402/5f439660-4111-4e65-8f45-f8497fabcde4)
+
+![Screenshot from 2023-11-24 16-59-48](https://github.com/Bloody-Mary/library-project/assets/37978402/6a074206-15c0-494c-bc5c-742ec887ef16)
+
+![Screenshot from 2023-11-24 16-59-28](https://github.com/Bloody-Mary/library-project/assets/37978402/73481d41-fd32-4b7c-9607-2e24662a23f9)
+
+![Screenshot from 2023-11-24 17-09-07](https://github.com/Bloody-Mary/library-project/assets/37978402/f7e753ef-8e64-44d2-81ca-57ab4947f1f9)
+
+![Screenshot from 2023-11-24 17-10-39](https://github.com/Bloody-Mary/library-project/assets/37978402/ddc0fc91-3bd4-4850-ab8d-44eebb03e398)
+
+![Screenshot from 2023-11-24 17-11-59](https://github.com/Bloody-Mary/library-project/assets/37978402/9271dc8c-0811-4959-9a84-12b2b755b91a)
+
+![Screenshot from 2023-11-24 17-54-43](https://github.com/Bloody-Mary/library-project/assets/37978402/7715e288-082c-4560-bd02-32106511b08f)
+
+![Screenshot from 2023-11-24 17-53-52](https://github.com/Bloody-Mary/library-project/assets/37978402/be630d88-4e75-48aa-b35e-d81fa74ff1ea)
+
+![Screenshot from 2023-11-24 17-54-21](https://github.com/Bloody-Mary/library-project/assets/37978402/8a87b0b6-2a14-403e-b5b8-3700b9617d93)
+
+![Screenshot from 2023-11-24 18-52-37](https://github.com/Bloody-Mary/library-project/assets/37978402/fb61fa95-7929-4b04-9d69-8a3f58056ef6)
+
+![Screenshot from 2023-11-24 18-51-46](https://github.com/Bloody-Mary/library-project/assets/37978402/afc08c0b-f5e7-473d-8aad-39ad55a84dad)
+
+![Screenshot from 2023-11-24 19-01-54](https://github.com/Bloody-Mary/library-project/assets/37978402/2803725f-4f4f-4edf-917d-45434e615473)
