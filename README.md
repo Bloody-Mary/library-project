@@ -150,3 +150,39 @@ b. Author data table implemented with FreeMarker and with different parameter se
 ![Screenshot from 2023-11-24 18-51-46](https://github.com/Bloody-Mary/library-project/assets/37978402/afc08c0b-f5e7-473d-8aad-39ad55a84dad)
 
 ![Screenshot from 2023-11-24 19-01-54](https://github.com/Bloody-Mary/library-project/assets/37978402/2803725f-4f4f-4edf-917d-45434e615473)
+
+
+7. Testing
+
+
+Unit tests for AuthorService, BookService, AuthorRestController and BookRestController
+
+
+![Screenshot from 2023-11-28 18-23-27](https://github.com/Bloody-Mary/library-project/assets/37978402/f8c96738-9395-4431-b578-81acb6d94d3c)
+
+
+![Screenshot from 2023-11-28 18-24-01](https://github.com/Bloody-Mary/library-project/assets/37978402/0155fc32-acd2-466e-8248-43f5d7b101e9)
+
+
+![Screenshot from 2023-11-28 23-24-58](https://github.com/Bloody-Mary/library-project/assets/37978402/f0fe7cc7-9757-4bec-8334-aa172610c989)
+
+
+![Screenshot from 2023-11-28 23-32-32](https://github.com/Bloody-Mary/library-project/assets/37978402/1b0bd25c-093e-4c34-bb0f-d7664945b205)
+
+
+![Screenshot from 2023-11-29 01-46-35](https://github.com/Bloody-Mary/library-project/assets/37978402/6144e458-d99e-4763-ae94-8301748ea3e5)
+
+
+![Screenshot from 2023-11-29 14-55-09](https://github.com/Bloody-Mary/library-project/assets/37978402/7feea2d5-3c6e-4a5d-be10-5c77e9710c22)
+
+
+![Screenshot from 2023-11-29 16-00-00](https://github.com/Bloody-Mary/library-project/assets/37978402/3eff5b7f-02a0-4cf7-92c2-5448400d52b0)
+
+
+![Screenshot from 2023-11-29 16-27-34](https://github.com/Bloody-Mary/library-project/assets/37978402/571e0dc5-1f17-4747-8479-1625ea4b5fbc)
+
+
+![Screenshot from 2023-11-29 16-59-31](https://github.com/Bloody-Mary/library-project/assets/37978402/2d650b0c-e28d-4710-ba1f-bb1fefc82158)
+
+
+![Screenshot from 2023-11-29 18-17-01](https://github.com/Bloody-Mary/library-project/assets/37978402/08d01568-f4b3-4e1b-9b26-532eec2525d0)
