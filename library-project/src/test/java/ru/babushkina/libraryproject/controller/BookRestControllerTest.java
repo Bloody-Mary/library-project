@@ -47,4 +47,18 @@ public class BookRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(bookName));
     }
+
+    @Test
+    public void testGetBookByNameV2() throws Exception {
+        String bookName = "Сага о Форсайтах";
+        BookDto expectedBookDto = new BookDto();
+        expectedBookDto.setName(bookName);
+
+        when(bookService.getByNameV2(bookName)).thenReturn(expectedBookDto);
+
+        mockMvc.perform(get("/book/v2")
+                .param("name", bookName))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(bookName));
+    }
 }
