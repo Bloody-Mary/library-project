@@ -55,4 +55,34 @@ public class AuthorRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(authorName));
     }
+
+    @Test
+    public void testGetAuthorNameV2() throws Exception {
+        String authorName = "Федор";
+        AuthorDto expectedAuthorDto = new AuthorDto();
+        expectedAuthorDto.setName(authorName);
+
+        when(authorService.getByNameV2(authorName)).thenReturn(expectedAuthorDto);
+
+        mockMvc.perform(get("/author/v2")
+                .param("name", authorName))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(authorName));
+    }
+
+    @Test
+    public void testGetAuthorByNameV3() throws Exception {
+        String authorName = "Михаил";
+        AuthorDto expectedAuthorDto = new AuthorDto();
+        expectedAuthorDto.setName(authorName);
+
+        when(authorService.getByNameV3(authorName)).thenReturn(expectedAuthorDto);
+
+        mockMvc.perform(get("/author/v3")
+                .param("name", authorName))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(authorName));
+    }
+
+
 }
