@@ -1,17 +1,28 @@
 package ru.babushkina.libraryproject.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.*;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
+import ru.babushkina.libraryproject.dto.BookUpdateDto;
+import ru.babushkina.libraryproject.model.Book;
+import ru.babushkina.libraryproject.model.Genre;
 import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.service.BookService;
+
+import java.nio.charset.Charset;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -98,5 +109,39 @@ public class BookRestControllerTest {
                 .andExpect(jsonPath("$.id").value(expectedBookDto.getId()))
                 .andExpect(jsonPath("$.name").value(expectedBookDto.getName()))
                 .andExpect(jsonPath("$.genre").value(expectedBookDto.getGenre()));
+    }
+
+//    @Test
+//    public void testUpdateBook() throws Exception {
+//        BookUpdateDto bookUpdateDto = new BookUpdateDto();
+//        bookUpdateDto.setId(3L);
+//        bookUpdateDto.setName("Нос");
+//
+//        ResponseEntity<BookDto> responseEntity = restTemplate.exchange("/book/update", HttpMethod.PUT,
+//                new HttpEntity<>(bookUpdateDto, new HttpHeaders()), BookDto.class);
+//
+//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//
+//        BookDto updatedBookDto = responseEntity.getBody();
+//
+//        assertEquals(bookUpdateDto.getId(), updatedBookDto.getId());
+//        assertEquals(bookUpdateDto.getName(), updatedBookDto.getName());
+//    }
+
+    @Test
+    public void testDeleteBook() throws Exception {
+        Book book = new Book();
+        Genre genre = new Genre();
+        genre.setId(1L);
+        book.setId(3L);
+        book.setName("Нос");
+        book.setGenre(genre);
+        bookRepository.save(book);
+
+        Long id = book.getId();
+        mockMvc.perform(MockMvcRequestBuilders.delete("/book/delete/{id}", id))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        assertFalse(bookRepository.existsById(id));
     }
 }
