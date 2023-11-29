@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import ru.babushkina.libraryproject.dto.BookCreateDto;
 import ru.babushkina.libraryproject.dto.BookDto;
 import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.service.BookService;
@@ -74,5 +75,28 @@ public class BookRestControllerTest {
                 .param("name", bookName))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(bookName));
+    }
+
+    @Test
+    public void testCreateBook() throws Exception {
+        BookCreateDto bookCreateDto = new BookCreateDto();
+        bookCreateDto.setAuthorId(1L);
+        bookCreateDto.setName("Повести Белкина");
+        bookCreateDto.setGenre("Повесть");
+
+        BookDto expectedBookDto = new BookDto();
+        expectedBookDto.setId(1L);
+        expectedBookDto.setName(bookCreateDto.getName());
+        expectedBookDto.setGenre(bookCreateDto.getGenre());
+
+        when(bookService.createBook(bookCreateDto)).thenReturn(expectedBookDto);
+
+        mockMvc.perform(post("/book/create")
+                        .contentType("application/json")
+                        .content("{\"name\":\"Повести Белкина\",\"genre\":\"Повесть\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(expectedBookDto.getId()))
+                .andExpect(jsonPath("$.name").value(expectedBookDto.getName()))
+                .andExpect(jsonPath("$.genre").value(expectedBookDto.getGenre()));
     }
 }

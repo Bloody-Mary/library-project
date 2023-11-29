@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Data
 @Builder
 public class BookCreateDto {
