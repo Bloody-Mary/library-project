@@ -1,5 +1,6 @@
 package ru.babushkina.libraryproject.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -7,21 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
+import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.service.AuthorService;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
@@ -35,6 +39,9 @@ public class AuthorRestControllerTest {
 
     @InjectMocks
     private AuthorController authorController;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     public void testGetAuthorById() throws Exception {
@@ -92,7 +99,6 @@ public class AuthorRestControllerTest {
 
     @Test
     public void testCreateAuthor() throws Exception {
-        // Arrange
         AuthorCreateDto authorCreateDto = new AuthorCreateDto();
         authorCreateDto.setName("John");
         authorCreateDto.setSurname("Doe");
@@ -103,12 +109,34 @@ public class AuthorRestControllerTest {
 
         when(authorService.createAuthor(authorCreateDto)).thenReturn(expectedAuthorDto);
 
-        // Act & Assert
         mockMvc.perform(post("/author/create")
                         .contentType("application/json")
                         .content("{\"name\":\"John\",\"surname\":\"Doe\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(authorCreateDto.getName()))
                 .andExpect(jsonPath("$.surname").value(authorCreateDto.getSurname()));
+    }
+
+    @Test
+    public void testUpdateAuthor() throws Exception {
+        AuthorUpdateDto authorUpdateDto = new AuthorUpdateDto();
+        authorUpdateDto.setId(1L);
+        authorUpdateDto.setName("John");
+        authorUpdateDto.setSurname("Doe");
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .put("/author/update")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(authorUpdateDto));
+        MvcResult result = mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String responseBody = result.getResponse().getContentAsString();
+        AuthorDto updatedAuthorDto = new ObjectMapper().readValue(responseBody, AuthorDto.class);
+
+        assertEquals(authorUpdateDto.getId(), updatedAuthorDto.getId());
+        assertEquals(authorUpdateDto.getName(), updatedAuthorDto.getName());
+        assertEquals(authorUpdateDto.getSurname(), updatedAuthorDto.getSurname());
+
     }
 }
