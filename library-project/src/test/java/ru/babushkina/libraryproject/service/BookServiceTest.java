@@ -16,10 +16,7 @@ import ru.babushkina.libraryproject.repository.AuthorRepository;
 import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.repository.GenreRepository;
 
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -182,5 +179,20 @@ public class BookServiceTest {
 
         verify(bookRepository, times(1)).findById(bookId);
         verify(bookRepository, never()).deleteById(anyLong());
+    }
+
+    @Test
+    public void testGetAllBooks() {
+        List<Book> books = new ArrayList<>();
+        Genre genre = new Genre();
+        Set<Author> authorBooks = new HashSet<>();
+        books.add(new Book(1L, "Анна Каренина", new Genre(), authorBooks));
+        books.add(new Book(2L, "Белые ночи", genre, authorBooks));
+        when(bookRepository.findAll()).thenReturn(books);
+        List<BookDto> bookDtos = bookService.getAllBooks();
+        assertEquals(bookDtos.size(), books.size());
+        assertEquals(bookDtos.get(0).getName(), "Анна Каренина");
+        assertEquals(bookDtos.get(1).getName(), "Белые ночи");
+        verify(bookRepository, times(1)).findAll();
     }
 }
