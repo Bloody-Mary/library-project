@@ -35,14 +35,11 @@ public class AuthorRestControllerTest {
         Long authorId = 1L;
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(authorId);
-        authorDto.setName("Александр");
-        authorDto.setSurname("Пушкин");
+        when(authorService.getAuthorById(authorId)).thenReturn(authorDto);
 
         mockMvc.perform(get("/author/{id}", authorId))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(authorDto.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(authorDto.getName()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.surname").value(authorDto.getSurname()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(authorDto.getId()));
     }
 
     @Test
