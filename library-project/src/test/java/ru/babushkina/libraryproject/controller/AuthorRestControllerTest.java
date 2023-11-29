@@ -17,9 +17,7 @@ import ru.babushkina.libraryproject.dto.AuthorCreateDto;
 import ru.babushkina.libraryproject.dto.AuthorDto;
 import ru.babushkina.libraryproject.dto.AuthorUpdateDto;
 import ru.babushkina.libraryproject.model.Author;
-import ru.babushkina.libraryproject.model.Book;
 import ru.babushkina.libraryproject.repository.AuthorRepository;
-import ru.babushkina.libraryproject.repository.BookRepository;
 import ru.babushkina.libraryproject.service.AuthorService;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,9 +40,6 @@ public class AuthorRestControllerTest {
 
     @Autowired
     private AuthorRepository authorRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     public void testGetAuthorById() throws Exception {
